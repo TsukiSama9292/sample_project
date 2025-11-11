@@ -15,6 +15,26 @@
     <p>{{ message }}</p>
     <p><small>這是 demo 網頁，位於 <code>ai/templates/ai/index.html</code></small></p>
     <p><small>這裡可以直接用傳統三件套去寫網頁</code></small></p>
+    <div style="margin-top:1rem;">
+      <button id="triggerBtn">按我觸發 API</button>
+      <div id="result" style="margin-top:0.75rem;color:#333"></div>
+    </div>
   </div>
+  <script>
+    const btn = document.getElementById('triggerBtn');
+    const result = document.getElementById('result');
+
+    btn.addEventListener('click', async () => {
+      result.textContent = '處理中...';
+      try {
+        const resp = await fetch('/api/trigger/');
+        if (!resp.ok) throw new Error('Network response was not ok');
+        const data = await resp.json();
+        result.textContent = `回傳: ${data.message} （${data.time}）`;
+      } catch (err) {
+        result.textContent = '呼叫 API 發生錯誤：' + err;
+      }
+    });
+  </script>
 </body>
 </html>
