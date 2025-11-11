@@ -1,7 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
-from django.http import HttpResponse
-
 def index(request):
-    return HttpResponse("Hello, Django!")
+    context = {'title': '這是網頁標題', 'message': '這是網頁內容'}
+    return render(request, 'ai/index.html', context)

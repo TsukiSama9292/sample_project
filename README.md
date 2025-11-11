@@ -95,6 +95,20 @@ urlpatterns = [
 ]
 ```
 
+## 建立網頁
+
+1. 伺服器設定檔案(`projectdev/projectdev/settings.py`) 的 `APP_DIRS=True`會讓專案具備更高的隔離性
+2. 因為每個應用都有隔離性，所以網頁要寫在 `{專案名}/{應用名}/templates/{應用名}/index.html`
+3. 網頁需要被渲染，所以要修改應用的路由(`projectdev/ai/views.py`)：
+    
+    ```python
+    from django.shortcuts import render
+
+    def index(request):
+        context = {'title': '這是網頁標題', 'message': '這是網頁內容'}
+        return render(request, 'ai/index.html', context)
+    ```
+
 ## 資料庫
 
 - 此專案包含本機 SQLite 檔案 `projectdev/db.sqlite3`。
