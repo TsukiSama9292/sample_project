@@ -1,0 +1,11 @@
+.cache
+__pycache__
+*.pyc
+
+.venv
+.conda
+
+*/migrations
+
+*.db
+*.sqlite3
